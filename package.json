@@ -1,7 +1,7 @@
 {
   "name": "dega-guardian",
   "version": "1.0.0",
-  "description": "DegaGuardian - DeFi Security & Domain Analysis Platform built on Ethereum Sepolia with 0.0001 ETH fees.",
+  "description": "DegaGuardian - DeFi Security & Analysis Platform built on Dega Agent with 0.0001 ETH fees for comprehensive contract analysis, social sentiment tracking, and real-time monitoring.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
