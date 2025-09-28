@@ -1,4 +1,4 @@
-# <img width="35" height="35" alt="DegaGuardian Logo" src="https://github.com/user-attachments/assets/4f8b03c7-01a7-4845-abf4-3feb5c08f4cc" />DegaGuardian
+# 🛡️DegaGuardian
 
 <div align="center">
   <video width="800" height="450" autoplay loop muted style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
