@@ -1,0 +1,17 @@
+{
+  "DToken": "0x6F8f19d73EDFD192Fa7A93D83CD1145CFDC50B32",
+  "ContractAnalysis": "0xE623c001F28811F72aa024BF9608a59c5e66720d",
+  "Tokenomics": "0xC71F50AbCb258D800E9Ad52c4A93DA0BcAB294E0",
+  "SocialAnalysis": "0xa7f984BF6Cb376AC8Fb6A58aA6F65d7F940fFFea",
+  "Monitoring": "0x4aA7B747Ed35B358B62fc9e13F8aCC696e517477",
+  "Universal": "0xdb5fC412a5515033265Dc9e8d383f9C2b551c747",
+  "DomainManagement": "0x4AE5f2F0bd9Fe81c7A5AB2B93c57eC99Eced747d",
+  "Network": {
+    "name": "Doma Testnet",
+    "rpcUrl": "https://rpc-testnet.doma.xyz",
+    "chainId": 9747,
+    "currency": "ETH",
+    "explorer": "https://explorer-testnet.doma.xyz",
+    "bridge": "https://bridge-testnet.doma.xyz"
+  }
+}
