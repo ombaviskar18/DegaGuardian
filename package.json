@@ -1,12 +1,13 @@
 {
-  "name": "doma-guardian",
+  "name": "dega-guardian",
   "version": "1.0.0",
-  "description": "DeFi Security & Domain Analysis Platform built on Dega Agent with ETH token integration.",
+  "description": "DegaGuardian - DeFi Security & Domain Analysis Platform built on Ethereum Sepolia with 0.0001 ETH fees.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:fix": "npx eslint . --ext .js,.ts --fix",
     "lint": "npx eslint . --ext .js,.ts",
+    "deploy:sepolia": "npx hardhat run scripts/deploy-sepolia.ts --network sepolia",
     "deploy:doma": "npx hardhat run scripts/deploy-doma.ts --network doma",
     "deploy:sonic": "npx hardhat run scripts/deploy-sonic.ts --network sonic",
     "test:doma": "npx hardhat run scripts/test-contracts.ts --network doma",

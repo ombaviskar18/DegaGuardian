@@ -5,7 +5,14 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const config: HardhatUserConfig = {
+  defaultNetwork: "sepolia",
   networks: {
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL || "https://ethereum-sepolia.publicnode.com",
+      chainId: 11155111,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      gasPrice: 20000000000, // 20 gwei
+    },
     doma: {
       url: "https://rpc-testnet.doma.xyz",
       chainId: 97476,

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DegaGuardian Debug</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+</head>
+<body>
+    <h1>DegaGuardian Debug Test</h1>
+    <button onclick="testConnection()">Test Connection</button>
+    <button onclick="testPayment()">Test Payment</button>
+    <div id="status"></div>
+    <div id="error"></div>
+
+    <script>
+        const CONTRACT_ADDRESSES = {
+            DToken: '0x5e5eEE029C1bC9311caC8547149178dD63B86071',
+            ContractAnalysis: '0x4E68Ca3Cf7B7317ab758e8Be73EEF3a711945742'
+        };
+
+        const DTOKEN_ABI = [
+            'function FEATURE_COST() view returns (uint256)',
+            'function payForFeature() external payable',
+            'function hasFeaturePayment(address user) external view returns (bool)',
+            'function getUserPaymentBalance(address user) external view returns (uint256)'
+        ];
+
+        const CONTRACT_ABI = [
+            'function requestContractAnalysis(string contractAddress) external'
+        ];
+
+        async function testConnection() {
+            try {
+                document.getElementById('status').innerHTML = 'Connecting...';
+                
+                if (typeof window.ethereum === 'undefined') {
+                    throw new Error('MetaMask not installed');
+                }
+
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                const address = await signer.getAddress();
+                
+                document.getElementById('status').innerHTML = `Connected: ${address}`;
+                document.getElementById('error').innerHTML = '';
+            } catch (err) {
+                document.getElementById('error').innerHTML = `Error: ${err.message}`;
+                document.getElementById('status').innerHTML = '';
+            }
+        }
+
+        async function testPayment() {
+            try {
+                document.getElementById('status').innerHTML = 'Testing payment...';
+                
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                
+                const dToken = new ethers.Contract(CONTRACT_ADDRESSES.DToken, DTOKEN_ABI, signer);
+                
+                const hasPayment = await dToken.hasFeaturePayment(await signer.getAddress());
+                document.getElementById('status').innerHTML += `<br>Has payment: ${hasPayment}`;
+                
+                if (!hasPayment) {
+                    const cost = await dToken.getFeatureCost();
+                    document.getElementById('status').innerHTML += `<br>Making payment: ${ethers.utils.formatEther(cost)} ETH`;
+                    
+                    const tx = await dToken.payForFeature({ value: cost });
+                    await tx.wait();
+                    document.getElementById('status').innerHTML += `<br>Payment successful: ${tx.hash}`;
+                }
+                
+                // Test contract call
+                const contract = new ethers.Contract(CONTRACT_ADDRESSES.ContractAnalysis, CONTRACT_ABI, signer);
+                const tx = await contract.requestContractAnalysis('0x1234567890123456789012345678901234567890');
+                document.getElementById('status').innerHTML += `<br>Contract call successful: ${tx.hash}`;
+                
+                document.getElementById('error').innerHTML = '';
+            } catch (err) {
+                document.getElementById('error').innerHTML = `Error: ${err.message}`;
+                document.getElementById('status').innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>

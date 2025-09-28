@@ -4,7 +4,7 @@ import { CheckCircle, Download, Brain, TrendingUp, TrendingDown, Activity, Walle
 import { useWallet } from '../hooks/useWallet';
 import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, DoughnutController } from 'chart.js';
 import { Bar, Pie, Line, Doughnut } from 'react-chartjs-2';
-import { contractService, switchToDoma as switchToZetaChain } from '../utils/contracts';
+import { contractService, switchToSepolia } from '../utils/contracts';
 import './TokenomicsPage.css';
 
 ChartJS.register(ArcElement, ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, DoughnutController);
@@ -208,12 +208,12 @@ export function TokenomicsPage() {
         return;
       }
 
-      // Switch to Dega network
-      const switched = await switchToZetaChain();
-      if (!switched) {
-        setErrorMessage('Failed to switch to Doma Testnet. Please add Doma to MetaMask.');
-        return;
-      }
+       // Switch to Ethereum Sepolia network
+       const switched = await switchToSepolia();
+       if (!switched) {
+         setErrorMessage('Failed to switch to Ethereum Sepolia. Please add Sepolia to MetaMask.');
+         return;
+       }
 
       // Call smart contract with payment
       console.log('Calling smart contract for tokenomics analysis...');
@@ -291,7 +291,7 @@ export function TokenomicsPage() {
     } catch (err: any) {
       console.error('Error analyzing tokenomics:', err);
       if (err.message && err.message.includes('Payment')) {
-        setErrorMessage('Payment required: Please ensure you have 0.01 aZETA and approve the transaction.');
+        setErrorMessage('Payment required: Please ensure you have 0.0001 ETH and approve the transaction.');
       } else if (err.message && err.message.includes('user rejected')) {
         setErrorMessage('Transaction was rejected. Please try again and approve the payment.');
       } else {
@@ -709,7 +709,7 @@ export function TokenomicsPage() {
                         <span className="warning-title">Wallet Connection Required</span>
                       </div>
                       <p className="warning-text">
-                        Connect your wallet and pay a small testnet fee (≈$0.01) to perform tokenomics analysis.
+                        Connect your wallet and pay a small testnet fee (≈$0.0001 ETH) to perform tokenomics analysis.
                       </p>
                     </motion.div>
                   )}

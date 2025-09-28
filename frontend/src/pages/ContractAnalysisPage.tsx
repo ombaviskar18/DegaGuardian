@@ -4,7 +4,8 @@ import { Shield, Scan, AlertTriangle, CheckCircle, Download, Wallet, Search, Bra
 import { useWallet } from '../hooks/useWallet';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from 'chart.js';
 import { Pie, Bar } from 'react-chartjs-2';
-import { contractService, switchToDoma as switchToZetaChain } from '../utils/contracts';
+import { contractService, switchToSepolia } from '../utils/contracts';
+import { NetworkStatus } from '../components/NetworkStatus';
 import './ContractAnalysisPage.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
@@ -58,10 +59,10 @@ export function ContractAnalysisPage() {
         return;
       }
 
-      // Switch to Dega network
-      const switched = await switchToZetaChain();
+      // Switch to Ethereum Sepolia network
+      const switched = await switchToSepolia();
       if (!switched) {
-        setErrorMessage('Failed to switch to Doma Testnet. Please add Doma to MetaMask.');
+        setErrorMessage('Failed to switch to Ethereum Sepolia. Please add Sepolia to MetaMask.');
         return;
       }
 
@@ -348,6 +349,7 @@ export function ContractAnalysisPage() {
 
   return (
     <div className="contract-analysis-page">
+      <NetworkStatus />
       {/* Hero Section */}
       <section className="analysis-hero">
         <div className="analysis-hero-container">

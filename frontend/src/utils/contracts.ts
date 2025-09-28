@@ -1,16 +1,16 @@
 import { ethers } from 'ethers';
-import { DOMA_GUARDIAN_CONTRACTS } from '../constants/contracts';
+import { GUARDIAN_CONTRACTS } from '../constants/contracts';
 
-// Contract addresses from deployment (Doma Testnet)
-export const CONTRACT_ADDRESSES = DOMA_GUARDIAN_CONTRACTS;
+// Contract addresses from deployment (Ethereum Sepolia)
+export const CONTRACT_ADDRESSES = GUARDIAN_CONTRACTS;
 
-// Network configuration (Doma Testnet)
+// Network configuration (Ethereum Sepolia)
 export const NETWORK_CONFIG = {
-  name: 'Doma Testnet',
-  rpcUrl: 'https://rpc-testnet.doma.xyz',
-  chainId: 97476,
+  name: 'Ethereum Sepolia',
+  rpcUrl: 'https://ethereum-sepolia.publicnode.com',
+  chainId: 11155111,
   currency: 'ETH',
-  explorer: 'https://explorer-testnet.doma.xyz',
+  explorer: 'https://sepolia.etherscan.io',
 };
 
 // Contract ABIs (simplified for the main functions)
@@ -70,7 +70,7 @@ export class ContractService {
     const has = await dtoken.hasFeaturePayment(user);
     if (!has) {
       // Pay exactly feature cost
-      const cost: bigint = await dtoken.FEATURE_COST();
+      const cost = await dtoken.FEATURE_COST();
       const tx = await dtoken.payForFeature({ value: cost });
       await tx.wait();
     }
@@ -135,8 +135,8 @@ export const contractService = new ContractService();
 export const formatEther = (wei: bigint) => ethers.formatEther(wei);
 export const parseEther = (ether: string) => ethers.parseEther(ether);
 
-// Network switching utility (Doma)
-export async function switchToDoma() {
+// Network switching utility (Ethereum Sepolia)
+export async function switchToSepolia() {
   if (typeof window.ethereum !== 'undefined') {
     try {
       await window.ethereum.request({
@@ -159,7 +159,7 @@ export async function switchToDoma() {
           });
           return true;
         } catch (addError) {
-          console.error('Failed to add Doma Testnet to MetaMask:', addError);
+          console.error('Failed to add Ethereum Sepolia to MetaMask:', addError);
           return false;
         }
       }
@@ -170,5 +170,6 @@ export async function switchToDoma() {
 }
 
 // Backward-compatible aliases
-export const switchToSonic = switchToDoma;
-export const switchToZetaChain = switchToDoma;
+export const switchToDoma = switchToSepolia;
+export const switchToSonic = switchToSepolia;
+export const switchToZetaChain = switchToSepolia;

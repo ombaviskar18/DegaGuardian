@@ -5,7 +5,7 @@ import { useWallet } from '../hooks/useWallet';
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, Title, DoughnutController } from 'chart.js';
 import { Doughnut, Bar } from 'react-chartjs-2';
-import { contractService, switchToDoma as switchToZetaChain } from '../utils/contracts';
+import { contractService, switchToSepolia } from '../utils/contracts';
 import './MonitoringPage.css';
 
 ChartJS.register(ArcElement, ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, Title, DoughnutController);
@@ -318,10 +318,10 @@ export function MonitoringPage() {
         return;
       }
 
-      // Switch to Dega network
-      const switched = await switchToZetaChain();
+      // Switch to Ethereum Sepolia network
+      const switched = await switchToSepolia();
       if (!switched) {
-        setError('Failed to switch to Doma Testnet. Please add Doma to MetaMask.');
+        setError('Failed to switch to Ethereum Sepolia. Please add Sepolia to MetaMask.');
         return;
       }
 

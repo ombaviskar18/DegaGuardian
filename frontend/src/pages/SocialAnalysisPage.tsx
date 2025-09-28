@@ -4,7 +4,7 @@ import { Eye, AlertTriangle, CheckCircle, Download, Search, TrendingUp, External
 import { useWallet } from '../hooks/useWallet';
 import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title } from 'chart.js';
 import { Bar, Pie, Line } from 'react-chartjs-2';
-import { contractService, switchToDoma as switchToZetaChain } from '../utils/contracts';
+import { contractService, switchToSepolia } from '../utils/contracts';
 import './SocialAnalysisPage.css';
 
 ChartJS.register(ArcElement, ChartTooltip, Legend, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title);
@@ -127,12 +127,12 @@ export function SocialAnalysisPage() {
         return;
       }
 
-      // Switch to Dega network
-      const switched = await switchToZetaChain();
-      if (!switched) {
-        setErrorMessage('Failed to switch to DomaChain network. Please add Doma Testnet to MetaMask.');
-        return;
-      }
+       // Switch to Ethereum Sepolia network
+       const switched = await switchToSepolia();
+       if (!switched) {
+         setErrorMessage('Failed to switch to Ethereum Sepolia. Please add Sepolia to MetaMask.');
+         return;
+       }
 
       // Call smart contract with payment
       console.log('Calling smart contract for social analysis...');
@@ -258,7 +258,7 @@ export function SocialAnalysisPage() {
     } catch (err: any) {
       console.error('Error during social analysis:', err);
       if (err.message && err.message.includes('Payment')) {
-        setErrorMessage('Payment required: Please ensure you have 0.01 aZETA and approve the transaction.');
+        setErrorMessage('Payment required: Please ensure you have 0.0001 ETH and approve the transaction.');
       } else if (err.message && err.message.includes('user rejected')) {
         setErrorMessage('Transaction was rejected. Please try again and approve the payment.');
       } else {

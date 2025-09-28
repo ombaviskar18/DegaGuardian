@@ -30,14 +30,13 @@ export function ConnectedContent({
             <NetworkSelector
               selectedChain={supportedChain}
               onNetworkSelect={handleNetworkSelect}
-              placeholder="Base Sepolia"
+              placeholder="Ethereum Sepolia"
             />
           </div>
           <p className="content-container-inner-description">
-            Make a cross-chain call with a message from{' '}
-            {supportedChain?.name || 'a supported network'} to a universal
-            contract on DomaChain that emits a{' '}
-            <span className="highlight">SmartContract</span>
+            Send a message using DegaGuardian on{' '}
+            {supportedChain?.name || 'Ethereum Sepolia'} with{' '}
+            <span className="highlight">0.0001 ETH payment</span>
           </p>
         </div>
         <MessageFlowCard

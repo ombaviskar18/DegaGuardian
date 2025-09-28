@@ -8,6 +8,7 @@ import { TokenomicsPage } from './pages/TokenomicsPage';
 import { SocialAnalysisPage } from './pages/SocialAnalysisPage';
 import { MonitoringPage } from './pages/MonitoringPage';
 import { PricingPage } from './pages/PricingPage';
+import { TestPage } from './pages/TestPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/social-analysis" element={<SocialAnalysisPage />} />
           <Route path="/monitoring" element={<MonitoringPage />} />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/test" element={<TestPage />} />
         </Routes>
       </Router>
     </ThemeProvider>

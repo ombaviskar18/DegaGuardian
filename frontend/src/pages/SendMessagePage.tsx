@@ -77,7 +77,7 @@ export function SendMessagePage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="message-hero-description"
               >
-                Send secure messages and transfer tokens across any blockchain using SoniChainSmart Contracts. Connect Bitcoin, Ethereum, BNB, Polygon, and more with native interoperability.
+                Send secure messages and transfer tokens across any blockchain using Dega Agent Connect Bitcoin, Ethereum, BNB, Polygon, and more with native interoperability.
               </motion.p>
 
               <motion.div

@@ -8,6 +8,13 @@ export interface SupportedChain {
 
 export const SUPPORTED_CHAINS: SupportedChain[] = [
   {
+    explorerUrl: 'https://sepolia.etherscan.io/tx/',
+    name: 'Ethereum Sepolia',
+    chainId: 11155111,
+    icon: '/logos/ethereum-logo.svg',
+    colorHex: '#3457D5',
+  },
+  {
     explorerUrl: 'https://explorer-testnet.doma.xyz/tx/',
     name: 'Doma Testnet',
     chainId: 9747,
