@@ -21,12 +21,15 @@ export default defineConfig({
       include: [/node_modules/, /toolkit/],
     },
     outDir: 'dist',
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           ethers: ['ethers'],
-          charts: ['chart.js', 'react-chartjs-2', 'recharts']
+          charts: ['chart.js', 'react-chartjs-2', 'recharts'],
+          motion: ['framer-motion'],
+          router: ['react-router-dom']
         }
       }
     }

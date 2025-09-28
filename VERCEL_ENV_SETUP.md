@@ -1,13 +1,13 @@
 # Vercel Environment Variables Setup Guide
 
-## Required Environment Variables for ZetaGuardian Backend API
+## Required Environment Variables for DegaGuardian Backend API
 
 To make the backend API work properly on Vercel, you need to set the following environment variables in your Vercel project dashboard.
 
 ### 1. Go to Vercel Dashboard
 1. Visit [vercel.com](https://vercel.com)
 2. Sign in to your account
-3. Select your `zeta-gaurdian` project
+3. Select your `dega-guardian` project
 4. Go to **Settings** → **Environment Variables**
 
 ### 2. Add the following Environment Variables:
