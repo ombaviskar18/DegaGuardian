@@ -389,7 +389,7 @@ export function HomePage() {
             <div className="footer-bottom-right">
               <div className="footer-social">
                 <a 
-                  href="https://github.com/ombaviskar18/ZetaGaurdian" 
+                  href="https://github.com/ombaviskar18/DegaGuardian" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="social-icon-link"
